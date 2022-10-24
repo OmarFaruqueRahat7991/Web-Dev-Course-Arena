@@ -9,7 +9,7 @@ const Courses = () => {
       <h1>This Is Courses</h1>
       <Container>
         <Row>
-          <Col lg="4">
+          <Col lg="4" className='d-none d-lg-block'>
             <CoursesCategory></CoursesCategory>
           </Col>
           <Col lg="8">
