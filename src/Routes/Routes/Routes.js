@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+import Category from "../../Category/Category";
+import CheckOut from "../../CheckOut/CheckOut";
+import ErrorPage from "../../Components/ErrorPage/ErrorPage";
+import CourseData from "../../CourseData/CourseData";
 import Main from "../../Layouts/Main";
+import Login from "../../Login/Login";
 import Blogs from "../../Pages/Blogs/Blogs";
-import CourseCard from "../../Pages/CourseCard/CourseCard";
 import Courses from "../../Pages/Courses/Courses";
-import CoursesCategory from "../../Pages/CoursesCategory/CoursesCategory";
 import FAQ from "../../Pages/FAQ/FAQ";
 import Home from "../../Pages/Home/Home/Home";
+import Register from "../../Register/Register";
 
 export const routes = createBrowserRouter([
     {
@@ -18,15 +22,17 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/courses',
+                loader: () => fetch('https://my-tenth-assignment-server.vercel.app/allcourses'),
                 element: <Courses></Courses>,
             },
             {
                 path: '/category/:id',
-                element: <CoursesCategory></CoursesCategory>,
+                loader: ({params}) => fetch(`https://my-tenth-assignment-server.vercel.app/category/${params.id}`),
+                element: <CourseData></CourseData>,
             },
             {
-                path: '/card/:id',
-                element: <CourseCard></CourseCard>,
+                path: '/checkout',
+                element: <CheckOut></CheckOut>,
             },
             {
                 path: '/faq',
@@ -36,8 +42,25 @@ export const routes = createBrowserRouter([
                 path: '/blogs',
                 element: <Blogs></Blogs>,
             },
+            {
+                path: '/login',
+                element: <Login></Login>,
+            },
+            {
+                path: '/register',
+                element: <Register></Register>,
+            },
+            {
+                path: '*',
+                element: <ErrorPage></ErrorPage>,
+            },
             
             
         ]
     },
 ])
+
+
+
+
+

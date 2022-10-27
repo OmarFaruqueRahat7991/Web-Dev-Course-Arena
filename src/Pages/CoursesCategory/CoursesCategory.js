@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 const CoursesCategory = () => {
+  
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
+    fetch("https://my-tenth-assignment-server.vercel.app/categories")
       .then((res) => res.json())
       .then((data) => setCategories(data));
   }, []);
   return (
     <div>
       <div>
-        <h3>All Courses</h3>
+        <h3>Categories</h3>
         {categories.map((category) => (
           <p key={category.id}>
-            <Link
-              style={{ textDecoration: "none" }}
-              to={`/category/${category.id}`}
+            <Button variant="outline-info"
+             
             >
               {" "}
-              {category.name}{" "}
-            </Link>
+              <Link style={{textDecoration : "none"}} to={`/category/${category.id}`}>{category.name}</Link>{" "}
+            </Button>
           </p>
         ))}
       </div>
@@ -30,3 +31,6 @@ const CoursesCategory = () => {
 };
 
 export default CoursesCategory;
+
+
+/* <Button variant="outline-info">Info</Button> */

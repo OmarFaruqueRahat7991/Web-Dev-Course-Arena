@@ -16,7 +16,7 @@ const Header = () => {
       variant="dark"
     >
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <img
             alt=""
             src={logo}
@@ -24,22 +24,22 @@ const Header = () => {
             height="30"
             className="d-inline-block align-top"
           />{" "}
-          Web Dev Course Arena
+          <Link to='/'  style={{ textDecoration: "none" }}>Web Dev Course Arena</Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Link
-              style={{ textDecoration: "none" }}
-              className="me-2"
+              style={{ textDecoration: "none", marginTop: '3px' }}
+              className="ms-2 me-2"
               to="/courses"
             >
               Courses
             </Link>
-            <Link className="me-2" style={{ textDecoration: "none" }} to="/faq">
+            <Link className="me-2" style={{ textDecoration: "none",marginTop: '3px' }} to="/faq">
               FAQ
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/blogs">
+            <Link style={{ textDecoration: "none",marginTop: '3px' }} to="/blogs">
               Blogs
             </Link>
           </Nav>
