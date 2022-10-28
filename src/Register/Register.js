@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { FaGoogle , FaGithub } from 'react-icons/fa';
 
 
 const Register = () => {
@@ -30,12 +29,6 @@ const Register = () => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-        <Button className='mt-4 mb-4' variant="outline-info">
-      <FaGoogle style={{marginLeft:'60px'}}></FaGoogle>Sign Up With Google
-      </Button><br />
-      <Button className='mb-4' variant="outline-dark">
-      <FaGithub style={{marginLeft:'60px'}}></FaGithub>Sign Up With Github
-      </Button>
       </Form>
     );
 };
