@@ -147,35 +147,43 @@ const Header = () => {
                 ></FaUserAlt>
               )}
             </Link>
-            <Button
-              onClick={handleGoogleSignIn}
-              style={{
-                fontSize: "15px",
-                width: "100px",
-                height: "100px",
-                marginRight: "10px",
-              }}
-              className=""
-              variant="outline-info"
-            >
-              <FaGoogle style={{ marginLeft: "30px" }}></FaGoogle>Sign In With
-              Google
-            </Button>
-            <br />
-            <Button
-              onClick={handleGithubSignIn}
-              style={{
-                fontSize: "15px",
-                width: "100px",
-                height: "100px",
-                marginRight: "-100px",
-              }}
-              className="mb-4"
-              variant="outline-info"
-            >
-              <FaGithub style={{ marginLeft: "30px" }}></FaGithub>Sign In With
-              Github
-            </Button>
+            <>
+              {user?.uid ? (
+                <></>
+              ) : (
+                <>
+                  <Button
+                    onClick={handleGoogleSignIn}
+                    style={{
+                      fontSize: "15px",
+                      width: "100px",
+                      height: "100px",
+                      marginRight: "10px",
+                    }}
+                    className=""
+                    variant="outline-info"
+                  >
+                    <FaGoogle style={{ marginLeft: "30px" }}></FaGoogle>Sign In
+                    With Google
+                  </Button>
+                  <br />
+                  <Button
+                    onClick={handleGithubSignIn}
+                    style={{
+                      fontSize: "15px",
+                      width: "100px",
+                      height: "100px",
+                      marginRight: "-100px",
+                    }}
+                    className="mb-4"
+                    variant="outline-info"
+                  >
+                    <FaGithub style={{ marginLeft: "30px" }}></FaGithub>Sign In
+                    With Github
+                  </Button>
+                </>
+              )}
+            </>
           </Nav>
           <div className="d-lg-none">
             <CoursesCategory></CoursesCategory>
