@@ -10,35 +10,40 @@ import Button from "react-bootstrap/Button";
 import { FaGithub, FaGoogle, FaUserAlt } from "react-icons/fa";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Image } from "react-bootstrap";
+import ReactTooltip from "react-tooltip";
 
 const Header = () => {
-
-  const {user, providerLogIn } = useContext(AuthContext);
+  const { user, providerLogIn, logOut } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
 
   const githubProvider = new GithubAuthProvider();
 
-
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
-    .then((result)=>{
-      const user = result.user;
-      console.log(user);
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
-      .catch(error => console.error(error));
-    
-  }
+      .catch((error) => console.error(error));
+  };
 
   const handleGithubSignIn = () => {
     providerLogIn(githubProvider)
-    .then((result)=>{
-      const user = result.user;
-      console.log(user);
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
       })
-      .catch(error => console.error(error));
-    
-  }
+      .catch((error) => console.error(error));
+  };
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <Navbar
       className="mb-4"
@@ -85,32 +90,99 @@ const Header = () => {
             </Link>
           </Nav>
           <Nav>
-            <Link
-              style={{ textDecoration: "none", marginRight: "10px",marginTop:'35px' }}
-              to="/login"
+            <p
+              style={{ marginTop: "35px", marginRight: "10px" }}
+              className="text-white"
             >
-              Login
+              {user?.uid ? (
+                <>
+                  <span>{user?.displayName}</span>
+                  <button
+                    onClick={handleLogOut}
+                    style={{ width: "70px", border: "1px solid white" }}
+                  >
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      marginRight: "10px",
+                      marginTop: "35px",
+                    }}
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    style={{
+                      textDecoration: "none",
+                      marginTop: "35px",
+                      marginRight: "10px",
+                    }}
+                    to="/Register"
+                    href="#memes"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
+            </p>
+            <Link>
+              {user?.photoURL ? (
+                <Image
+                  data-tip
+                  data-for="registerTip"
+                  style={{ height: "30px", marginTop: "35px" }}
+                  roundedCircle
+                  src={user?.photoURL}
+                ></Image>
+              ) : (
+                <FaUserAlt
+                  data-tip
+                  data-for="registerTip"
+                  style={{ marginTop: "39px", marginRight: "10px" }}
+                ></FaUserAlt>
+              )}
             </Link>
-            <Link
-              style={{ textDecoration: "none",marginTop:'35px',marginRight:'10px' }}
-              to="/Register"
-              href="#memes"
+            <Button
+              onClick={handleGoogleSignIn}
+              style={{
+                fontSize: "15px",
+                width: "100px",
+                height: "100px",
+                marginRight: "10px",
+              }}
+              className=""
+              variant="outline-info"
             >
-              Register
-            </Link>
-            <p style={{ marginTop:'35px',marginRight:'10px' }} className="text-white">{user?.displayName}</p>
-            <Link>{user?.photoURL ? <Image  style={{height:'30px',marginTop:'35px'}} roundedCircle src={user?.photoURL}></Image> : <FaUserAlt style={{marginTop:'39px'}} ></FaUserAlt> }</Link>
-            <Button onClick={handleGoogleSignIn} style={{fontSize:'15px',width: '100px', height: '100px',marginRight:'10px' }} className="" variant="outline-info">
-              <FaGoogle style={{marginLeft:'30px'}}></FaGoogle>Sign In With Google
+              <FaGoogle style={{ marginLeft: "30px" }}></FaGoogle>Sign In With
+              Google
             </Button>
             <br />
-            <Button onClick={handleGithubSignIn} style={{fontSize:'15px',width: '100px', height: '100px',marginRight:'-100px' }} className="mb-4" variant="outline-info">
-              <FaGithub style={{marginLeft:'30px'}}></FaGithub>Sign In With Github
+            <Button
+              onClick={handleGithubSignIn}
+              style={{
+                fontSize: "15px",
+                width: "100px",
+                height: "100px",
+                marginRight: "-100px",
+              }}
+              className="mb-4"
+              variant="outline-info"
+            >
+              <FaGithub style={{ marginLeft: "30px" }}></FaGithub>Sign In With
+              Github
             </Button>
           </Nav>
           <div className="d-lg-none">
             <CoursesCategory></CoursesCategory>
           </div>
+          <ReactTooltip id="registerTip" place="top" effect="solid">
+            {user?.displayName}
+          </ReactTooltip>
         </Navbar.Collapse>
       </Container>
     </Navbar>
