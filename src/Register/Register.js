@@ -6,7 +6,7 @@ import { AuthContext } from "../Contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser , updateUserProfile } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -14,9 +14,10 @@ const Register = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    console.log(name,photoURL, email, password);
 
     createUser(email, password)
       .then((result) => {
@@ -25,15 +26,26 @@ const Register = () => {
         setError("");
         form.reset();
         navigate('/');
-        // handleUpdateUserProfile(name,photoURL);
-        // handleEmailVerification();
-        // toast.success('Please Verify Your Email Address.');
+        handleUpdateUserProfile(name,photoURL);
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
   };
+
+
+  const handleUpdateUserProfile = (name,photoURL) => {
+    const profile = {
+        displayName: name, 
+        photoURL: photoURL
+    }
+    updateUserProfile(profile)
+    .then(() => {
+      }).catch((error) => {
+        console.error(error);
+      });
+  }
 
   return (
     <Form
@@ -58,6 +70,15 @@ const Register = () => {
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Photo URL</Form.Label>
+        <Form.Control
+          name="photoURL"
+          type="text"
+          placeholder="Enter Name"
+          required
+        />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control
           name="email"
@@ -74,9 +95,6 @@ const Register = () => {
           placeholder="Password"
           required
         />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Agree to All Terms and Conditions" />
       </Form.Group>
       <Form.Text className="text-danger">{error}</Form.Text> <br />
       <Button variant="primary" type="submit">
