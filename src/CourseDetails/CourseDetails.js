@@ -1,11 +1,21 @@
-import React from "react";
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const CourseSummaryCard = ({ c }) => {
-  const { _id , name, image_url, instructor, instructor_img_url, details, price } = c;
-  return (
-    <div  className="bg-gray-100 flex flex-col max-w-lg mt-20 p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-700 dark:text-gray-100 mb-10">
+
+const CourseDetails = () => {
+    const singleCourse = useLoaderData()
+    const {
+        name,
+        image_url,
+        instructor,
+        instructor_img_url,
+        details,
+        price,
+      } = singleCourse;
+    return (
+        <div style={{marginLeft:"450px"}} className="bg-gray-100 flex flex-col max-w-lg mt-20 p-6 space-y-6 overflow-hidden rounded-lg shadow-md dark:bg-gray-700 dark:text-gray-100 mb-10">
       <div className="flex space-x-4">
         <img
           alt=""
@@ -24,25 +34,19 @@ const CourseSummaryCard = ({ c }) => {
           className="object-cover w-full mb-4 h-60 sm:h-96 dark:bg-gray-500"
         />
         <h2 className="mb-1 text-xl font-semibold">{name}</h2>
-        <p className="text-sm dark:text-gray-400">
-          {details?.length > 250 ? (
-            <p>
-              {details.slice(0, 250) + "...."}{" "}
-              <></>
-            </p>
-          ) : (
-            <p>{details}</p>
-          )}
-        </p>
+        <p className="text-sm dark:text-gray-400">{details}</p>
         <h2>Price:{price}</h2>
       </div>
       <Button variant="outline-info">
-        <Link to={`/course/${_id}`} style={{ textDecoration: "none" }}>
-          Know More About This Course
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
+          Buy This Course
         </Link>
       </Button>
     </div>
-  );
+        
+    );
 };
 
-export default CourseSummaryCard;
+export default CourseDetails;
+
+
