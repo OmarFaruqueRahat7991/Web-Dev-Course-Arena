@@ -25,7 +25,6 @@ const Register = () => {
         console.log(user);
         setError("");
         form.reset();
-        navigate('/');
         handleUpdateUserProfile(name,photoURL);
       })
       .catch((error) => {

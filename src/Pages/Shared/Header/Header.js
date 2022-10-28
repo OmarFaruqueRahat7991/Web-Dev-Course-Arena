@@ -134,7 +134,7 @@ const Header = () => {
               {user?.photoURL ? (
                 <Image
                   data-tip
-                  data-for="registerTip"
+                  data-for="userName"
                   style={{ height: "30px", marginTop: "35px" }}
                   roundedCircle
                   src={user?.photoURL}
@@ -142,7 +142,7 @@ const Header = () => {
               ) : (
                 <FaUserAlt
                   data-tip
-                  data-for="registerTip"
+                  data-for="userName"
                   style={{ marginTop: "39px", marginRight: "10px" }}
                 ></FaUserAlt>
               )}
@@ -188,7 +188,7 @@ const Header = () => {
           <div className="d-lg-none">
             <CoursesCategory></CoursesCategory>
           </div>
-          <ReactTooltip id="registerTip" place="top" effect="solid">
+          <ReactTooltip id="userName" place="top" effect="solid">
             {user?.displayName}
           </ReactTooltip>
         </Navbar.Collapse>

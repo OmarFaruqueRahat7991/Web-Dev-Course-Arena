@@ -39,7 +39,7 @@ const CourseDetails = () => {
       </div>
       <Button variant="outline-info">
         <Link to="/checkout" style={{ textDecoration: "none" }}>
-          Buy This Course
+          Get Premium Access
         </Link>
       </Button>
     </div>
