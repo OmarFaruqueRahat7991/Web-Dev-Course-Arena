@@ -44,10 +44,10 @@ const Header = () => {
             </Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
+            <Link style={{ textDecoration: "none",marginRight: '10px'}} to='/login'>Login</Link>
+            <Link style={{ textDecoration: "none"}} to='/Register' href="#memes">
+              Register
+            </Link>
           </Nav>
           <div className="d-lg-none">
             <CoursesCategory></CoursesCategory>
