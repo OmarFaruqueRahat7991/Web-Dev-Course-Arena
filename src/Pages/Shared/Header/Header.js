@@ -11,6 +11,7 @@ import { FaGithub, FaGoogle, FaUserAlt } from "react-icons/fa";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Image } from "react-bootstrap";
 import ReactTooltip from "react-tooltip";
+import Toggle from "../../../Components/Toggle/Toggle";
 
 const Header = () => {
   const { user, providerLogIn, logOut } = useContext(AuthContext);
@@ -89,6 +90,10 @@ const Header = () => {
               Blogs
             </Link>
           </Nav>
+          <Nav style={{marginTop: "3px", marginRight:'300px' }}>
+          <Toggle></Toggle>
+          </Nav>
+          
           <Nav>
             <p
               style={{ marginTop: "35px", marginRight: "10px" }}

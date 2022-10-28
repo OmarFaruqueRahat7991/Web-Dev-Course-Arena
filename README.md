@@ -4,11 +4,10 @@ This is one of a  assignment project of my web development course.
 
 
 ## Important Links:
-1. [Github Client Code Link]:
-2. [Github Server Code Link](#technologies)
-3. [Installation](#installation)
-4. [Collaboration](#collaboration)
-5. [FAQs](#faqs)
+1. [Github Client Code Link]: https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-OmarFaruqueRahat7991
+2. [Github Server Code Link]: https://github.com/programming-hero-web-course1/b610-lerning-platform-server-side-OmarFaruqueRahat7991
+3. [Live website link of firebase]:https://my-tenth-assignment.web.app
+4. [Live server link of vercel]:https://my-tenth-assignment-server.vercel.app/
 
 I Used:
 
